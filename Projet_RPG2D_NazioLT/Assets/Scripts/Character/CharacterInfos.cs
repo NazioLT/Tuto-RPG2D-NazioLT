@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum ItemsID
+public enum ItemID
 {
     Money = 0,
 }
@@ -12,16 +12,17 @@ public enum ItemsID
 public class Item
 {
     [SerializeField] private string name;
-    [SerializeField] public ItemsID ID;
-
-    public int number;
+    
+    public ItemID _id;
+    public int number = 0;
 }
 
 public class CharacterInfos : MonoBehaviour
 {
     private static Item[] inventory;
+
     private int maxHealth = 5;
-    public static int health = 5;
+    public int health = 5;
 
     [SerializeField] private Transform heartPrefab;
     [SerializeField] private Transform heartParent;
@@ -33,15 +34,17 @@ public class CharacterInfos : MonoBehaviour
     private void Start()
     {
         manager = GameManager.GetInstance();
+
         inventory = new Item[1];
         inventory[0] = new Item();
 
         InitHealth();
+
     }
 
     private void Update()
     {
-        moneyTxt.text = " : " + inventory[(int) ItemsID.Money].number;
+        moneyTxt.text = " : " + inventory[((int)ItemID.Money)].number;
     }
 
     private void InitHealth()
@@ -66,18 +69,18 @@ public class CharacterInfos : MonoBehaviour
         {
             if (i <= health)
             {
-                heartsObj[i-1].SetActive(true);
+                heartsObj[i - 1].SetActive(true);
             }
             else
             {
-                heartsObj[i-1].SetActive(false);
+                heartsObj[i - 1].SetActive(false);
             }
-            
+
         }
     }
-    
-    public static void AddItem(ItemsID _id, int _number)
+
+    public static void AddItem(ItemID _id, int _number)
     {
-        inventory[(int) _id].number += _number;
+        inventory[((int)_id)].number += _number;
     }
 }
