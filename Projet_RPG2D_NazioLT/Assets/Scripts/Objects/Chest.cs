@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Chest : MonoBehaviour
@@ -10,11 +11,12 @@ public class Chest : MonoBehaviour
     [SerializeField] private Sprite[] closedSprite;
 
     private GameManager manager;
-
     private InputAction interactAction;
 
     private bool isReach = false;
     private bool open = false;
+
+    [SerializeField] private Item[] content;
 
     private void Start()
     {
@@ -29,11 +31,11 @@ public class Chest : MonoBehaviour
         if (isReach && _interact > 0)
         {
             Open();
+            EmptyContent();
         }
         else if (!isReach)
         {
             Close();
-            
         }
     }
 
@@ -68,6 +70,15 @@ public class Chest : MonoBehaviour
         if (collision.tag == "Player")
         {
             isReach = false;
+        }
+    }
+
+    private void EmptyContent()
+    {
+        foreach (var _item in content)
+        {
+            CharacterInfos.AddItem(_item.ID, _item.number);
+            _item.number = 0;
         }
     }
 }

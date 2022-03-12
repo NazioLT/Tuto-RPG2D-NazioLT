@@ -847,8 +847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21589de45dd8e054b8df77a99e322143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyCount: 0
-  health: 5
   heartPrefab: {fileID: 1762248072797669128, guid: 7b8a85f8c1294cf40b15d6920700ec2d, type: 3}
   heartParent: {fileID: 1026935542}
   moneyTxt: {fileID: 1930601422}
@@ -3715,6 +3713,10 @@ MonoBehaviour:
   closedSprite:
   - {fileID: 1336440320741484319, guid: f6f01679743cbaf42af531089e9b41e8, type: 3}
   - {fileID: -93750458980389090, guid: f6f01679743cbaf42af531089e9b41e8, type: 3}
+  content:
+  - name: Money
+    ID: 0
+    number: 8
 --- !u!1 &1951810287851609677
 GameObject:
   m_ObjectHideFlags: 0
