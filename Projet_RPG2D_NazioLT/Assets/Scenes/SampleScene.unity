@@ -847,7 +847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21589de45dd8e054b8df77a99e322143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moneyCount: 0
   health: 5
   heartPrefab: {fileID: 1762248072797669128, guid: 7b8a85f8c1294cf40b15d6920700ec2d, type: 3}
   heartParent: {fileID: 1026935542}
@@ -3706,6 +3705,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd8cbe0e1a1d394ab414f5e07b33a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  content:
+  - name: Money
+    _id: 0
+    number: 8
   graphisms:
   - {fileID: 1951810289315169520}
   - {fileID: 429592007}
@@ -3852,6 +3855,18 @@ PrefabInstance:
     - target: {fileID: 4163864298418889636, guid: 3ee674c23468ab34b9f74ee68b034a53, type: 3}
       propertyPath: m_Name
       value: Simple Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163864298418889642, guid: 3ee674c23468ab34b9f74ee68b034a53, type: 3}
+      propertyPath: content.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163864298418889642, guid: 3ee674c23468ab34b9f74ee68b034a53, type: 3}
+      propertyPath: content.Array.data[0].name
+      value: Money
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163864298418889642, guid: 3ee674c23468ab34b9f74ee68b034a53, type: 3}
+      propertyPath: content.Array.data[0].number
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4163864298418889643, guid: 3ee674c23468ab34b9f74ee68b034a53, type: 3}
       propertyPath: m_RootOrder
