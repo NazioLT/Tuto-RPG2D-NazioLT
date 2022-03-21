@@ -5,27 +5,27 @@ using UnityEngine.InputSystem;
 
 public class CharacterMotor : MonoBehaviour
 {
-
+    [SerializeField] private float speed = 5f;
     private Vector2 velocity = Vector2.zero;
     private int direction = 0;
-    [SerializeField] private float speed = 5f;
 
+
+    private InputsManager inputs;
     private Animator anim;
     private GameManager manager;
-    private InputManager inputs;
+
 
     void Start()
     {
         manager = GameManager.GetInstance();
-        inputs = InputManager.GetInstance();
-
+        inputs = InputsManager.instance;
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        Vector2 _moveValue = inputs.GetMoveInputs();
+        Vector2 _moveValue = inputs.GetMovingInputs().normalized;
         _moveValue = ChooseDirection(_moveValue);
 
         velocity = _moveValue * speed;
@@ -38,7 +38,7 @@ public class CharacterMotor : MonoBehaviour
 
     private Vector2 ChooseDirection(Vector2 _value)
     {
-        Vector2 _result = Mathf.Abs(_value.x) >= Mathf.Abs(_value.y) ? new Vector2(_value.x, 0) : _result = new Vector2(0, _value.y);
+        Vector2 _result = Mathf.Abs(_value.x) >= Mathf.Abs(_value.y) ? new Vector2(_value.x, 0) : new Vector2(0, _value.y);
 
         direction = SetDirection(_result);
         return _result;
@@ -46,11 +46,11 @@ public class CharacterMotor : MonoBehaviour
 
     private int SetDirection(Vector2 _vector)
     {
-        if (_vector.x > 0)return 6;
-        if (_vector.x < 0)return 4;
+        if (_vector.x > 0) return 6;
+        if (_vector.x < 0) return 4;
 
-        if (_vector.y > 0)return 8;
-        if (_vector.y < 0)return 2;
+        if (_vector.y > 0) return 8;
+        if (_vector.y < 0) return 2;
 
         return 0;
     }
