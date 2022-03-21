@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
-    [SerializeField] private PlayerInput inputs;
 
     private void Awake()
     {
@@ -20,10 +19,5 @@ public class GameManager : MonoBehaviour
     public static GameManager GetInstance()
     {
         return instance;
-    }
-
-    public PlayerInput GetInputs()
-    {
-        return inputs;
     }
 }
