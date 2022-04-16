@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 [RequireComponent(typeof(Canvas))]
 public class UIDialogue : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI contentText;
+    [SerializeField] private Image charImage;
 
     private Canvas canvas;
 
@@ -16,11 +18,12 @@ public class UIDialogue : MonoBehaviour
         CloseDialogue();
     }
 
-    public void SetDialogue(string _content)
+    public void SetDialogue(Dialogue _dialogue)
     {
         canvas.enabled = true;
 
-        contentText.text = _content;
+        contentText.text = _dialogue.getName + " : " + _dialogue.getContent;
+        charImage.sprite = _dialogue.getCharSprite;
     }
 
     public void CloseDialogue() { canvas.enabled = false; }
