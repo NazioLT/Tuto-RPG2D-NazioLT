@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class NPC : InteractableObject
 {
-    [SerializeField] private Dialogue[] dialogues;
-    private int currentID;
+    [SerializeField] private Dialogue[] dialogue;
+    private int currentID = -1;
 
     private UIDialogue uiDialogue;
 
@@ -16,10 +16,10 @@ public class NPC : InteractableObject
 
     public override void Interact()
     {
-        if (isReach && currentID + 1  < dialogues.Length)
+        if (dialogue != null && isReach && currentID + 1 < dialogue.Length)
         {
             currentID++;
-            uiDialogue.SetDialogue(dialogues[currentID]);
+            uiDialogue.SetDialogue(dialogue[currentID]);
         }
         else
         {

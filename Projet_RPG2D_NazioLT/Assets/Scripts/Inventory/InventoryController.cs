@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(InventoryData), typeof(InventoryDisplay))]
@@ -16,4 +14,6 @@ public class InventoryController : MonoBehaviour
         data.Init(this);
         display.Init(this);
     }
+
+    public int SlotNumber => data.SlotNumber;
 }

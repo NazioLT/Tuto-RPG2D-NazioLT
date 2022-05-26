@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class InventoryDisplay : MonoBehaviour
 {
-    [SerializeField] private int slotNumber;
-
-    private SlotsController[] slots;
+    private SlotController[] slots;
 
     [SerializeField] private Transform slotPrefab;
 
@@ -17,10 +15,10 @@ public class InventoryDisplay : MonoBehaviour
     {
         controller = _controller;
 
-        slots = new SlotsController[slotNumber];
-        for (var i = 0; i < slotNumber; i++)
+        slots = new SlotController[controller.SlotNumber];
+        for (int i = 0; i < slots.Length; i++)
         {
-            slots[i] = Instantiate(slotPrefab, transform.position, Quaternion.identity, slotCanvas.transform).GetComponent<SlotsController>();
+            slots[i] = Instantiate(slotPrefab, transform.position, Quaternion.identity, slotCanvas.transform).GetComponent<SlotController>();
             slots[i].Init(i);
         }
     }

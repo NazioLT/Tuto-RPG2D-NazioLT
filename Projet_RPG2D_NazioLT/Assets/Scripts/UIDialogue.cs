@@ -11,10 +11,13 @@ public class UIDialogue : MonoBehaviour
     [SerializeField] private Image charImage;
 
     private Canvas canvas;
+    private RectTransform charImageRect;
 
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
+        charImageRect = charImage.GetComponent<RectTransform>();
+
         CloseDialogue();
     }
 
@@ -22,8 +25,12 @@ public class UIDialogue : MonoBehaviour
     {
         canvas.enabled = true;
 
-        contentText.text = _dialogue.getName + " : " + _dialogue.getContent;
+        contentText.text = _dialogue.getCharName + " : " + _dialogue.getContent;
+
+        Sprite _current = _dialogue.getCharSprite;
+
         charImage.sprite = _dialogue.getCharSprite;
+        charImageRect.sizeDelta = new Vector2(charImageRect.sizeDelta.y * (_current.bounds.size.x / _current.bounds.size.y), charImageRect.sizeDelta.y);
     }
 
     public void CloseDialogue() { canvas.enabled = false; }
