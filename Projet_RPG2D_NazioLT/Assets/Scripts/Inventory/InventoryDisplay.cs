@@ -22,4 +22,12 @@ public class InventoryDisplay : MonoBehaviour
             slots[i].Init(i);
         }
     }
+
+    public void UpdateDisplay(SlotsInfos[] _slotsInfos)
+    {
+        for (int i = 0; i < _slotsInfos.Length; i++)
+        {
+            slots[i].UpdateDisplay(_slotsInfos[i].Icon, _slotsInfos[i].Number);
+        }
+    }
 }

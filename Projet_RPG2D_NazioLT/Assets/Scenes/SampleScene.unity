@@ -818,6 +818,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNumber: 18
+  slotsInfos: []
+  templates:
+  - {fileID: 11400000, guid: 7392c0ecfb0a96f4dbebdb4632385bfa, type: 2}
+  - {fileID: 11400000, guid: 26b6d79abf085d84d9e4018bbad80b15, type: 2}
 --- !u!1 &848015024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,7 +1930,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

@@ -13,6 +13,8 @@ public class InventoryController : MonoBehaviour
 
         data.Init(this);
         display.Init(this);
+
+        display.UpdateDisplay(data.Slots);
     }
 
     public int SlotNumber => data.SlotNumber;
