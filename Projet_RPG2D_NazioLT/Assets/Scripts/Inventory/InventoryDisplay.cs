@@ -1,7 +1,9 @@
 using UnityEngine;
 
 public class InventoryDisplay : MonoBehaviour
-{
+{   
+    private int startDragID = 9999999;
+
     private SlotController[] slots;
 
     [SerializeField] private Transform slotPrefab;
@@ -17,7 +19,7 @@ public class InventoryDisplay : MonoBehaviour
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i] = Instantiate(slotPrefab, transform.position, Quaternion.identity, slotCanvas.transform).GetComponent<SlotController>();
-            slots[i].Init(i);
+            slots[i].Init(i, this);
         }
     }
 
@@ -28,4 +30,11 @@ public class InventoryDisplay : MonoBehaviour
             slots[i].UpdateDisplay(_slotInfos[i].Icon, _slotInfos[i].Number);
         }
     }
+
+    #region DragAndDrop
+
+    public void StartDrag(int _startDragID) => startDragID = _startDragID;
+    public void EndDrag(int _endDragID) =>  controller.SwitchSlots(startDragID, _endDragID);
+
+    #endregion
 }
