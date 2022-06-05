@@ -19,11 +19,12 @@ public class SlotController : MonoBehaviour
 
     public void UpdateDisplay(Sprite _icon, int _number)
     {
-        bool _none = _number == 0;
+        bool _empty = _number == 0;
 
-        iconImage.sprite = _icon;
-        iconImage.color = !_none ? Color.white : new Color(1, 1, 1, 0);
+        numberText.text = _empty ? "" : _number.ToString("00");
 
-        numberText.text = !_none ? _number.ToString("00") : "";
+        iconImage.enabled = !_empty;
+
+        if (!_empty) iconImage.sprite = _icon;
     }
 }

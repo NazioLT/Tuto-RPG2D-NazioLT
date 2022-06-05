@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryDisplay : MonoBehaviour
@@ -23,11 +21,11 @@ public class InventoryDisplay : MonoBehaviour
         }
     }
 
-    public void UpdateDisplay(SlotsInfos[] _slotsInfos)
+    public void UpdateDisplay(SlotsInfos[] _slotInfos)
     {
-        for (int i = 0; i < _slotsInfos.Length; i++)
+        for (int i = 0; i < _slotInfos.Length; i++)
         {
-            slots[i].UpdateDisplay(_slotsInfos[i].Icon, _slotsInfos[i].Number);
+            slots[i].UpdateDisplay(_slotInfos[i].Icon, _slotInfos[i].Number);
         }
     }
 }
