@@ -20,7 +20,7 @@ public class SlotsInfos
     #region Getters
 
     public Sprite Icon => template.Icon;
-    public int itemID => template.ItemID;
+    public int itemID => template.ItemId;
     public int Stack => template.Stack;
 
     public int Number => number;
