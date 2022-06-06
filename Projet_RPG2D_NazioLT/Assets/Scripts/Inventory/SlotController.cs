@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class SlotController : MonoBehaviour, IBeginDragHandler, IDragHandler, IDropHandler, IEndDragHandler
+public class SlotController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     public int slotID { private set; get; }
 
-    private Sprite slotSprite;
+    private Sprite iconSprite;
 
     [SerializeField] private Image iconImage;
     [SerializeField] private TextMeshProUGUI numberText;
@@ -30,9 +28,9 @@ public class SlotController : MonoBehaviour, IBeginDragHandler, IDragHandler, ID
 
     public void UpdateDisplay(Sprite _icon, int _number)
     {
-        bool _empty = _number == 0;
+        iconSprite = _icon;
 
-        slotSprite = _icon;
+        bool _empty = _number == 0;
 
         numberText.text = _empty ? "" : _number.ToString("00");
 
@@ -47,24 +45,21 @@ public class SlotController : MonoBehaviour, IBeginDragHandler, IDragHandler, ID
     {
         dragObject = Instantiate(dragPrefab, transform.position, Quaternion.identity, transform).gameObject;
         Image _img = dragObject.GetComponent<Image>();
-        _img.sprite = slotSprite;
-        _img.color = slotSprite == null ? new Color(1,1,1,0) : Color.white;
+        _img.sprite = iconSprite;
+        _img.color = iconSprite == null ? new Color(0,0,0,0) : Color.white;
 
         RectTransform _rect = (RectTransform)(dragObject.transform);
         RectTransform _slotRect = (RectTransform)transform;
 
         _rect.sizeDelta = _slotRect.sizeDelta;
 
+        dragObject.GetComponent<Canvas>().overrideSorting = true;
+
         display.StartDrag(slotID);
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        dragObject.transform.position = eventData.position;
-    }
-
-    public void OnEndDrag(PointerEventData eventData) => Destroy(dragObject);
-
+    public void OnDrag(PointerEventData eventData) => dragObject.transform.position = eventData.position;
+    public void OnEndDrag(PointerEventData eventData)=> Destroy(dragObject);
     public void OnDrop(PointerEventData eventData) => display.EndDrag(slotID);
 
     #endregion

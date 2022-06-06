@@ -24,7 +24,7 @@ public class InventoryData : MonoBehaviour
 
     public void SwitchSlots(int _slot1, int _slot2)
     {
-        if(_slot1 == _slot2 || _slot1 >= slotsInfos.Length || _slot2 >= slotsInfos.Length) return;
+        if(_slot1 == _slot2 || _slot1 >= slotsInfos.Length || _slot2 >= slotsInfos.Length || slotsInfos[_slot1].ItemId == 0) return;
 
         SlotsInfos _save1 = slotsInfos[_slot1];
         SlotsInfos _save2 = slotsInfos[_slot2];

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -301,4 +301,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconImage: {fileID: 1195987497}
   numberText: {fileID: 1501835111}
-  dragPrefab: {fileID: 2886342240421532817, guid: 9257ccb37e7fce34286605336d573752, type: 3}
+  dragPrefab: {fileID: 6419011569275347501, guid: 67c8aa90655b66b4abc393668ac2ce33, type: 3}

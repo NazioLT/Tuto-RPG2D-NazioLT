@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public class InventoryDisplay : MonoBehaviour
-{   
-    private int startDragID = 9999999;
+{
+    private int startDragSlotID = 999999;
 
     private SlotController[] slots;
 
@@ -31,10 +31,6 @@ public class InventoryDisplay : MonoBehaviour
         }
     }
 
-    #region DragAndDrop
-
-    public void StartDrag(int _startDragID) => startDragID = _startDragID;
-    public void EndDrag(int _endDragID) =>  controller.SwitchSlots(startDragID, _endDragID);
-
-    #endregion
+    public void StartDrag(int _startSlotID) => startDragSlotID = _startSlotID;
+    public void EndDrag(int _endSlotID) => controller.SwitchSlots(startDragSlotID, _endSlotID);
 }

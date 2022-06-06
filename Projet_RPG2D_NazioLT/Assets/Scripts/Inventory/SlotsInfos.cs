@@ -17,13 +17,10 @@ public class SlotsInfos
 
     private ItemTemplate template;
 
-    #region Getters
 
     public Sprite Icon => template.Icon;
-    public int itemID => template.ItemId;
+    public int ItemId => template.ItemId;
     public int Stack => template.Stack;
 
     public int Number => number;
-
-    #endregion
 }
