@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
@@ -11,7 +9,8 @@ public class InputsManager : MonoBehaviour
 
     private InputAction moveAction;
 
-    [HideInInspector] public UnityEvent interactionEvent;
+    [SerializeField] private UnityEvent<bool> interactionEvent;
+    [SerializeField] private UnityEvent<bool> inventoryEvent;
 
     private PlayerInput inputs;
 
@@ -33,8 +32,16 @@ public class InputsManager : MonoBehaviour
         return moveAction.ReadValue<Vector2>();
     }
 
-    public void OnInteract()
+    public void OnInteractPerformed(InputAction.CallbackContext _ctx)
     {
-        interactionEvent.Invoke();
+        interactionEvent.Invoke(_ctx.performed);
     }
+
+    public void OnInventoryPerformed(InputAction.CallbackContext _ctx)
+    {
+        inventoryEvent.Invoke(_ctx.performed);
+    }
+
+    public UnityEvent<bool> InteractionEvent => interactionEvent;
+    public UnityEvent<bool> InventoryEvent => inventoryEvent;
 }

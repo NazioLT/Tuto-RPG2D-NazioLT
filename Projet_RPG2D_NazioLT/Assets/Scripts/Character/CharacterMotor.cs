@@ -1,28 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CharacterMotor : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     private Vector2 velocity = Vector2.zero;
-    private int direction = 0;
+    private Direction direction = 0;
 
 
     private InputsManager inputs;
     private Animator anim;
     private GameManager manager;
 
-
-    void Start()
+    private void Start()
     {
         manager = GameManager.GetInstance();
         inputs = InputsManager.instance;
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     private void FixedUpdate()
     {
         Vector2 _moveValue = inputs.GetMovingInputs().normalized;
@@ -33,7 +28,7 @@ public class CharacterMotor : MonoBehaviour
         transform.position += new Vector3(velocity.x * Time.fixedDeltaTime, velocity.y * Time.fixedDeltaTime, 0);
 
         //Animation
-        anim.SetInteger("direction", direction);
+        anim.SetInteger(GameInfos.DIRECTION_ANIM_KEY, (int)direction);
     }
 
     private Vector2 ChooseDirection(Vector2 _value)
@@ -44,14 +39,14 @@ public class CharacterMotor : MonoBehaviour
         return _result;
     }
 
-    private int SetDirection(Vector2 _vector)
+    private Direction SetDirection(Vector2 _vector)
     {
-        if (_vector.x > 0) return 6;
-        if (_vector.x < 0) return 4;
+        if (_vector.x > 0) return Direction.East;
+        if (_vector.x < 0) return Direction.West;
 
-        if (_vector.y > 0) return 8;
-        if (_vector.y < 0) return 2;
+        if (_vector.y > 0) return Direction.North;
+        if (_vector.y < 0) return Direction.South;
 
-        return 0;
+        return Direction.None;
     }
 }

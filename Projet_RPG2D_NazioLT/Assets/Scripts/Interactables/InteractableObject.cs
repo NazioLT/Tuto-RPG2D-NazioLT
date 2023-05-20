@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -15,14 +13,14 @@ public abstract class InteractableObject : MonoBehaviour
     private void Start()
     {
         manager = GameManager.GetInstance();
-        InputsManager.instance.interactionEvent.AddListener(Interact);
+        InputsManager.instance.InteractionEvent.AddListener(Interact);
     }
 
-    public abstract void Interact();
+    public abstract void Interact(bool _performed = true);
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == GameInfos.PLAYER_TAG)
         {
             isReach = true;
         }
@@ -30,7 +28,7 @@ public abstract class InteractableObject : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == GameInfos.PLAYER_TAG)
         {
             isReach = false;
             open = false;

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Chest : InteractableObject
 {
@@ -13,7 +10,7 @@ public class Chest : InteractableObject
     [SerializeField] private Sprite[] openSprite;
     [SerializeField] private Sprite[] closedSprite;
 
-    public override void Interact()
+    public override void Interact(bool _performed = true)
     {
         if (isReach)
         {
