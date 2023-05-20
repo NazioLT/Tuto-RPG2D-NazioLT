@@ -8,15 +8,6 @@ public enum ItemID
     Money = 0,
 }
 
-[System.Serializable]
-public class Item
-{
-    [SerializeField] private string name;
-    
-    public ItemID _id;
-    public int number = 0;
-}
-
 public class CharacterInfos : MonoBehaviour
 {
     private static Item[] inventory;
@@ -31,6 +22,11 @@ public class CharacterInfos : MonoBehaviour
     private GameManager manager;
     [SerializeField] private TextMeshProUGUI moneyTxt;
 
+    public static void AddItem(ItemID _id, int _number)
+    {
+        inventory[((int)_id)].number += _number;
+    }
+
     private void Start()
     {
         manager = GameManager.GetInstance();
@@ -39,7 +35,6 @@ public class CharacterInfos : MonoBehaviour
         inventory[0] = new Item();
 
         InitHealth();
-
     }
 
     private void Update()
@@ -71,10 +66,5 @@ public class CharacterInfos : MonoBehaviour
             
             heartsObj[i - 1].SetActive(_state);
         }
-    }
-
-    public static void AddItem(ItemID _id, int _number)
-    {
-        inventory[((int)_id)].number += _number;
     }
 }

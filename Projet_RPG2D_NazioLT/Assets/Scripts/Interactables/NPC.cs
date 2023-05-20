@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC : InteractableObject
@@ -14,17 +12,16 @@ public class NPC : InteractableObject
         uiDialogue = FindObjectOfType<UIDialogue>();
     }
 
-    public override void Interact()
+    public override void Interact(bool _performed = true)
     {
         if (dialogue != null && isReach && currentID + 1 < dialogue.Length)
         {
             currentID++;
             uiDialogue.SetDialogue(dialogue[currentID]);
+            return;
         }
-        else
-        {
-            currentID = -1;
-            uiDialogue.CloseDialogue();
-        }
+
+        currentID = -1;
+        uiDialogue.CloseDialogue();
     }
 }
